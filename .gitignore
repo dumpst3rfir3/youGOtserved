@@ -1,0 +1,6 @@
+*.exe
+*.bin
+goSvc/payload.go
+goSvc/main.go
+goSvc/versioninfo.json
+payloads/
