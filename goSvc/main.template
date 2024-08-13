@@ -1,0 +1,46 @@
+//go:build windows
+
+package main
+
+import (
+	"log"
+	"os"
+	"strings"
+
+	"golang.org/x/sys/windows/svc"
+)
+
+var svcName string = "youGOtserved"
+
+func main() {
+	isIntSess, err := svc.IsAnInteractiveSession()
+	if err != nil {
+		log.Fatalf(
+			"failed to determine if we are running in an " +
+			"interactive session: %v", 
+			err,
+		)
+	}
+	if !isIntSess {
+		runService()
+		return
+	}
+
+	if len(os.Args) < 2 {
+		log.Fatalf("no command specified")
+	}	
+
+	cmd := strings.ToLower(os.Args[1])
+	switch cmd {
+	case "install":
+		installService()
+	case "remove":
+		removeService()
+	case "start":
+		startService()
+	case "stop":
+		stopService()
+	default:
+		log.Fatalf("invalid command %s", cmd)
+	}
+}
