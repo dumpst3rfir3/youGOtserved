@@ -1,10 +1,12 @@
-# Johnny DLLaze, GOst Writer
+# You GOt Served
 
 ![](OIG3.QmdBp.jpg)
 
 This tool was developed for red team or other security testing purposes. It will simply take a shellcode (e.g., .bin) file, obfuscate the shellcode using [Babble](https://github.com/mjwhitta/babble), and then build a Windows service executable that can run the shellcode. The service executable can also take arguments to install, start, stop, or remove the Windows service.
 
 When the service executable runs, it decodes the shellcode (in place, in memory) and executes it using VirtualAlloc/RtlCopyMemory/VirtualProtect/CreateThread. The service executable is also built with customizable Windows Version Info to make it appear more like a "real" DLL.
+
+There's probably a lot that could be cleaned up, hopefully I will get to it eventually - but for now, this works.
 
 ## Prerequisites
 
