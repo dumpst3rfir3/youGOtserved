@@ -84,9 +84,10 @@ func installService() {
 	s, err = m.CreateService(
 		svcName, 
 		exepath, 
-		mgr.Config{DisplayName: svcName}, 
-		"is", 
-		"auto-started",
+		mgr.Config{StartType: 
+			mgr.StartAutomatic,
+			DisplayName: svcName,
+		}, 
 	)
 	if err != nil {
 		log.Fatal(err)
